@@ -59,7 +59,7 @@ body {
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
   .content {
-    text-size-adjust: auto;
+    font-size: 8px;
   }
 }
 
