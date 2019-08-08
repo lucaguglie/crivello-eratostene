@@ -1,3 +1,12 @@
+let modeChanged = false
+let oldMax = 0
+let primi = []
+
+function ChangeMode() {
+  modeChanged = true
+  Calcola()
+}
+
 function CreaTabella(max) {
   let table = document.createElement('table')
   table.id = 'tabella-crivello'
@@ -39,7 +48,7 @@ function CreaTabella(max) {
   return table
 }
 
-function StampaPrimi(array, max) {
+function Primi(array, max) {
   let primi = []
   for (let i = 2; i < max; i++) {
     if (array[i]) primi.push(i)
@@ -48,6 +57,7 @@ function StampaPrimi(array, max) {
 }
 
 function Pulisci() {
+  console.clear()
   // Pulisci tabella
   document.getElementById('tabella-crivello').textContent = ''
   // Pulisci div
@@ -55,11 +65,27 @@ function Pulisci() {
 }
 
 function Calcola() {
-  console.clear()
-  Pulisci()
-  if (document.getElementById('max').value == '') return false
 
-  let max = parseInt(document.getElementById('max').value)
+  let max = document.getElementById('max').value 
+  if (max == '') {
+    oldMax = 0
+    Pulisci()
+    return false 
+  }
+  else if (isNaN(max) || (!isNaN(max) && parseInt(max) < 1)) {
+    oldMax = 0
+    alert('I caratteri e i numeri minori di 1 non sono ammessi')
+    return false
+  }
+
+  max = parseInt(max)
+
+  if(oldMax == max && modeChanged == false && event.key == 'Enter') {
+    Colors(primi)
+    return false
+  } else if(oldMax == max && modeChanged == false && event.key != 'Enter') return false
+
+  Pulisci()
 
   let array = new Array(max).fill(true),
     upperLimit = Math.sqrt(max + 1)
@@ -76,13 +102,11 @@ function Calcola() {
 
   // Trovo i numeri primi partendo da 2, 3, 5...
   for (let i = 2; i <= upperLimit; i++) {
-    if (array[i]) {
-      // È un numero primo
-      let color = getRandomColor()
+    if (array[i]) { // È un numero primo
       for (let j = i * i; j < max; j += i) {
         if (mode == 'true')
-          // Coloro il multiplo del numero primo
-          tds[j - 1].setAttribute('bgColor', color)
+          // Assegno la classe con il numero primo per colorare la cella in seguito
+          tds[j - 1].setAttribute('class', i)
         // Dato che è multiplo non è primo quindi lo metto a false
         array[j] = false
       }
@@ -91,9 +115,13 @@ function Calcola() {
 
   // Modalità testuale
   if (mode == 'false')
-    document.getElementById('primi').innerHTML = StampaPrimi(array, max).join(
+    document.getElementById('primi').innerHTML = Primi(array, max).join(
       ', '
     )
+  else Colors(primi = Primi(array, max))
+
+  oldMax = max
+  modeChanged = false
 }
 
 function setAttributes(el, attrs) {
@@ -109,4 +137,14 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * letters.length)]
   }
   return color
+}
+
+function Colors(primi) {
+  primi.forEach(primo => {
+    let color = getRandomColor()
+    let tds = document.getElementsByClassName(primo)
+    for (let i = 0; i < tds.length; i++) {
+      tds[i].setAttribute('bgColor', color)
+    }
+  });
 }

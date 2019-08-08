@@ -13,12 +13,12 @@
 
       <div class="menu input">
         <label>Numero massimo</label>
-        <input id="max" type="number" onkeyup="Calcola()" />
+        <input id="max" type="number" onkeyup="Calcola(event)" />
       </div>
 
       <div class="menu mode">
         <label>Modalità</label>
-        <select id="modalita" onchange="Calcola()">
+        <select id="modalita" onchange="ChangeMode()">
           <option value="true">grafica</option>
           <option value="false">testuale</option>
         </select>
