@@ -7,20 +7,33 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Crivello di Eratostene</title>
   </head>
+
   <body>
-    <div>
-      <input id="max" type="number" onkeyup="Calcola()" />
-      <label>Modalità</label>
-      <select id="modalita" onchange="Calcola()">
-        <option value="true">grafica</option>
-        <option value="false">testuale</option>
-      </select>
-    </div>
-    <br />
-    <div id="div-tabella">
-      <table id="tabella-crivello"></table>
-    </div>
-    <div id="primi"></div>
+    <div class="page">
+
+      <div class="menu input">
+        <label>Numero massimo</label>
+        <input id="max" type="number" onkeyup="Calcola()" />
+      </div>
+
+      <div class="menu mode">
+        <label>Modalità</label>
+        <select id="modalita" onchange="Calcola()">
+          <option value="true">grafica</option>
+          <option value="false">testuale</option>
+        </select>
+      </div>
+
+      <br />
+      
+      <div class="section content" id="div-tabella">
+        <table id="tabella-crivello"></table>
+      </div>
+      
+      <div class="section content" id="primi"></div>
+    
+    </div>  
+    
     <script src="script.js"></script>
   </body>
 </html>
