@@ -1,0 +1,24 @@
+{
+  "name": "crivello-eratostene",
+  "version": "1.0.0",
+  "description": "Semplice programma che mostra il funzionamento del crivello di Eratostene. Per maggiorni informazioni ```https://it.wikipedia.org/wiki/Crivello_di_Eratostene```",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xFabifont/crivello-eratostene.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xFabifont/crivello-eratostene/issues"
+  },
+  "homepage": "https://github.com/xFabifont/crivello-eratostene#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
