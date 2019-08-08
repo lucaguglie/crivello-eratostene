@@ -1,4 +1,6 @@
 const express = require('express')
+const serverPort = 8080
+const port = process.env.PORT || serverPort
 
 var app = express()
 
@@ -10,7 +12,7 @@ app.get('/', async (req, res) => {
 
 const start = async () => {
   try {
-    var listener = await app.listen(3000)
+    var listener = await app.listen(port)
     console.log('Server listening on port ' + listener.address().port)
   } catch (err) {
     console.log(err)
