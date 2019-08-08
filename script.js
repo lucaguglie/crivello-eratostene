@@ -31,10 +31,10 @@ function CreaTabella(max) {
     }
   }
 
-  table.rows[0].cells[0].id = 'first'
-
   // Se il max non è un multiplo di 10 aggiungo l'ultima riga
   if (max % 10 != 0) table.appendChild(row)
+
+  table.rows[0].cells[0].id = 'first'
 
   return table
 }
